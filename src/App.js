@@ -16,6 +16,7 @@ const App = () => {
     width:"100px",
     height:"100px",
     backgroundColor:'white',
+    boxShadow:`0px 10px 10px rgba(0,0,0,0.1)`
   }
   const chessBox = {
     width:100*8,
@@ -31,14 +32,14 @@ const App = () => {
     console.log("row", parseInt(row)+1)
     console.log("column", parseInt(column)+1)
     if(parseInt(row) >= 0 && parseInt(row) < 8 && parseInt(column) >= 0 && parseInt(column) < 8){
-      position.push([parseInt(column)-1, parseInt(row)+2]);
-      position.push([parseInt(column)-1, parseInt(row)-2]);
-      position.push([parseInt(column)-2, parseInt(row)+1]);
-      position.push([parseInt(column)-2, parseInt(row)-1]);
-      position.push([parseInt(row)-1, parseInt(column)+2]);
-      position.push([parseInt(row)-1, parseInt(column)-2]);
+      position.push([parseInt(row)+2, parseInt(column)+1,]);
+      position.push([parseInt(row)+2, parseInt(column)-1]);
       position.push([parseInt(row)-2, parseInt(column)+1]);
       position.push([parseInt(row)-2, parseInt(column)-1]);
+      position.push([parseInt(row)+1, parseInt(column)+2]);
+      position.push([parseInt(row)-1, parseInt(column)+2]);
+      position.push([parseInt(row)+1, parseInt(column)-2]);
+      position.push([parseInt(row)-1, parseInt(column)-2]);
     }
     console.log(position)
     for (let i=0;i<8;i++){
@@ -47,7 +48,7 @@ const App = () => {
         let pos = [i, j];
         const exist = position.find(element => {
             console.log(element)
-            if(element[0] == pos[0] && element[1] == pos[1]){
+            if(element[0] === pos[0] && element[1] === pos[1]){
                 return true;
             }else{
                 return false;
@@ -70,12 +71,11 @@ const App = () => {
       
       <div>
         <h2>
-          <span>N x N </span> 
-          ChessBoard
+          <span>Knight Moves</span> 
         </h2>
         <input type="number" placeholder='Enter the Row' onChange={(e)=>setRow(parseInt(e.target.value))} />
         <input type="number" placeholder='Enter the Column' onChange={(e)=>setColumn(parseInt(e.target.value))} />
-        <Button onClick = {makeChessBoard}variant="primary">Check</Button>{' '}
+        <Button onClick = {makeChessBoard}variant="primary">Check</Button>
       </div>
 
       <section style={chessBox}>
